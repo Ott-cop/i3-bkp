@@ -2,23 +2,26 @@
 #################                          Define the $mod variable/key                             #################
 #####################################################################################################################
 
+# Eexec_always --no-startup-id picom --config ~/.config/picom/picom.conf
+
 
 exec_always --no-startup-id nm-applet
 
 #exec_always xrandr --output eDP-1 --mode 1920x1080 --rate 120.00 --output HDMI-1-1 --mode 1920x1080 --rate 144.00 --right-of eDP-1
 #exec_always xrandr --output eDP-1 --mode 1920x1080 --rate 120.00
 
-exec_always for id in $(xinput list | grep "pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Accel Profile Enabled' 0, 1; done
-exec_always for id in $(xinput list | grep -i "touchpad" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Tapping Enabled' 1; xinput --set-prop $id 'libinput Natural Scrolling Enabled' 1; done
+exec_always --no-startup-id for id in $(xinput list | grep "pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Accel Profile Enabled' 0, 1; done
+exec_always --no-startup-id for id in $(xinput list | grep -i "touchpad" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id 'libinput Tapping Enabled' 1; xinput --set-prop $id 'libinput Natural Scrolling Enabled' 1; done
 
-exec_always setxkbmap -layout br,intl
-exec_always setxkbmap -option 'grp:win_space_toggle'
+exec_always --no-startup-id setxkbmap -layout br,intl
+exec_always --no-startup-id setxkbmap -option 'grp:win_space_toggle'
 
 bindsym $mod+x exec --no-startup-id pavucontrol
-bindsym $mod+n exec xrandr --output HDMI-1 --off && xrandr --auto
-bindsym $mod+m exec xrandr --output eDP-1 --mode 1920x1080 --rate 120.00 --output HDMI-1-1 --mode 1920x1080 --rate 144.00 --right-of eDP-1
-
-#exec_always exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 120.00 --output HDMI-1-1 --mode 1920x1080 --rate 144.00 --right-of eDP-1
+bindsym $mod+n exec --no-startup-id xrandr --output HDMI-1 --off && xrandr --auto
+bindsym $mod+m exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 120.00 --output HDMI-1-1 --mode 1920x1080 --rate 244.00 --right-of eDP-1
+bindsym $mod+p exec --no-startup-id xrandr --output eDP-2 --mode 1920x1080 --rate 120.00 --output HDMI-1 --mode 1920x1080 --rate 244.00 --right-of eDP-2
+bindsym $mod+o exec --no-startup-id xrandr --output DP-0 --mode 1920x1080 --rate 120.00 --output HDMI-0 --mode 1920x1080 --rate 244.00 --right-of DP-0
+#exec_always exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 120.00 --output HDMI-1 --mode 1920x1080 --rate 144.00 --right-of eDP-1
 
 
 bindsym $mod+Ctrl+Right resize shrink width 10 px or 10 ppt
